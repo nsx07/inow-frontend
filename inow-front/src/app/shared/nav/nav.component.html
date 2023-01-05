@@ -1,0 +1,22 @@
+<p-panel header="iNow" [toggleable]="true">
+  <ng-template pTemplate="icons">
+    <button pButton class="p-panel-header-icon p-link">
+      <span class="pi pi-user"></span>
+    </button>
+  </ng-template>
+  <ng-template pTemplate="content">
+    <div class="grid">
+      <div class="col-6 flex gap-2">
+        <span>Component X</span>
+        <span>Component Y</span>
+        <span>Component Z</span>
+      </div>
+      <div class="col-6 flex flex-row-reverse flex-wrap">
+        <button pButton class="p-panel-header-icon p-link" (click)="menu.toggle($event)">
+          <span class="pi pi-cog"></span>
+        </button>
+        <p-menu #menu id="config_menu" [model]="items" [popup]="true"></p-menu>
+      </div>
+    </div>
+  </ng-template>
+</p-panel>

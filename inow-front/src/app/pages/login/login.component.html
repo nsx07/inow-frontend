@@ -1,0 +1,32 @@
+<div class="w-screen h-screen p-block">
+    <div class="flex justify-content-center align-items-center p-2">
+        <p-card [style]="{width: '30vw'}">
+          <form [formGroup]="form">
+              <div class="grid p-fluid ">
+                <div class="col-12 text-center">
+                  <span class="text-4xl">Login</span>
+                </div>
+                <div class="col-12">
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                        <input type="text" formControlName="username" pInputText placeholder="Username">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon"><i class="pi pi-key"></i></span>
+                        <input type="password" formControlName="password" autocomplete="username" pInputText placeholder="Senha">
+                    </div>
+                </div>
+                <div class="col-12">
+                  <button pButton pRipple type="button" label="Entrar" [disabled]="!form.valid" class="p-button-outlined p-button-success w-full"></button>
+                </div>
+                <div class="col-12 text-center">
+                  <small>Não possui conta? <a class="no-underline" href="/signup"> Cadastre-se </a></small>
+                </div>
+            </div>
+          </form>
+        </p-card>
+    </div>
+</div>
+
