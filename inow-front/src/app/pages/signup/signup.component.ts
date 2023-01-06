@@ -1,3 +1,4 @@
+import { Routes } from '@angular/router';
 import { ApiService } from './../../services/api-service.service';
 import { IUser } from './../../models/User';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -29,8 +30,8 @@ export class SignupComponent implements OnInit {
       cpf : ["", Validators.required],
       phone: ["", Validators.required],
       email : ["", Validators.required],
-      password : ["", Validators.required],
-      re_password : ["", Validators.required]
+      password : ["", Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(16), Validators.pattern(/^([a-zA-Z0-9_@*#$]*)$/)]) ],
+      // re_password : ["", Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(16), Validators.pattern(/^([a-zA-Z0-9_@*#$]*)$/)])]
     })
   }
 
@@ -42,7 +43,9 @@ export class SignupComponent implements OnInit {
     console.log(user)
 
     this.apiService.sendToApi({action : "createUser", parameters : user}).subscribe(
-      (result)  => console.log(result)
+      (result)  => {
+        if (result) location.assign("./main")
+      }
     )
 
   }

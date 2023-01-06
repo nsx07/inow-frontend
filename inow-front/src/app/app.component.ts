@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   constructor(private apiService : ApiService) {}
 
   ngOnInit(): void {
-    this.apiService.requestFromApi({ action: "getUsers", parameters : {id : "1", name: "Felipe", email : "felipe@pires.com"}}).subscribe(
+    this.apiService.requestFromApi({ action: "getUsers"}).subscribe(//, parameters : {id : "1", name: "Felipe", email : "felipe@pires.com"}
       (users) => {
         console.log(users)
       }

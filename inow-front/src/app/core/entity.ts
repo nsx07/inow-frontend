@@ -3,7 +3,7 @@ export declare type Parameters = {[key : string] : string}
 
 export interface IQueryEntity {
   action : string,
-  parameters : Parameters
+  parameters? : Parameters
 }
 
 

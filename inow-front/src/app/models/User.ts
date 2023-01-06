@@ -1,8 +1,13 @@
+export interface ILog {
+  email : string,
+  password : string
+}
 export interface IUser {
   id : number,
   name : string,
   lastName : string,
   cpf : string,
+  phone : string,
   email : string,
 }
 

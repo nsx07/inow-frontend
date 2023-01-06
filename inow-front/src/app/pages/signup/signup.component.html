@@ -36,18 +36,18 @@
                       <input type="email" formControlName="email" pInputText placeholder="Email">
                   </div>
               </div>
-              <div class="col-6">
+              <div class="col-12">
                   <div class="p-inputgroup">
                       <span class="p-inputgroup-addon"><i class="pi pi-key"></i></span>
                       <input type="password" formControlName="password" pInputText autocomplete="username" placeholder="Senha">
                   </div>
               </div>
-              <div class="col-6">
+              <!-- <div class="col-6">
                   <div class="p-inputgroup">
                       <span class="p-inputgroup-addon"><i class="pi pi-key"></i></span>
                       <input type="password" formControlName="re_password" pInputText autocomplete="username" placeholder="Confirme a senha">
                   </div>
-              </div>
+              </div> -->
               <div class="col-12">
                 <button pButton pRipple type="button" label="Entrar" (click)="signUp()" [disabled]="!form.valid" class="p-button-outlined p-button-success w-full"></button>
               </div>
