@@ -27,9 +27,9 @@ export class SignupComponent implements OnInit {
     this.form = this.formB.group({
       name : ["", Validators.required],
       lastname : ["", Validators.required],
-      cpf : ["", Validators.required],
       phone: ["", Validators.required],
-      email : ["", Validators.required],
+      email : ["", Validators.compose([Validators.required, Validators.email])],
+      cpf : ["", Validators.compose([Validators.required, Validators.maxLength(11), Validators.minLength(11)])],
       password : ["", Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(16), Validators.pattern(/^([a-zA-Z0-9_@*#$]*)$/)]) ],
       // re_password : ["", Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(16), Validators.pattern(/^([a-zA-Z0-9_@*#$]*)$/)])]
     })
@@ -44,7 +44,10 @@ export class SignupComponent implements OnInit {
 
     this.apiService.sendToApi({action : "createUser", parameters : user}).subscribe(
       (result)  => {
-        if (result) location.assign("./main")
+        if (result) {
+          location.assign("./login");
+
+        }
       }
     )
 

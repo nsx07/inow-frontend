@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-nav',
@@ -6,47 +7,49 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit{
-  items = new Array();
+  itemsHeader = new Array();
+  itemsNav = new Array();
+
+
+  constructor(
+    private storageService : StorageService
+  ) {}
 
   ngOnInit(): void {
-    this.items = [
-      {
-          label: 'Options',
+    this.itemsHeader = [
+        {
+          label: 'Perfil',
           items: [{
-              label: 'Update',
-              icon: 'pi pi-refresh',
+              label: 'Acessar perfil',
+              icon: 'pi pi-user',
               command: () => {
-                  this.update();
+                  this.toProfile();
               }
           },
           {
-              label: 'Delete',
-              icon: 'pi pi-times',
+              label: 'Sair',
+              icon: 'pi pi-arrow-circle-down',
               command: () => {
-                  this.delete();
+                  this.logout();
               }
-          }
-      ]},
-      {
-          label: 'Navigate',
-          items: [{
-              label: 'Angular',
-              icon: 'pi pi-external-link',
-              url: 'http://angular.io'
-          },
-          {
-              label: 'Router',
-              icon: 'pi pi-upload',
-              routerLink: '/fileupload'
-          }
-      ]}
-  ];
+          }]
+        }
+      ];
+    this.itemsNav = [
+        {label: 'Home', icon: 'pi pi-fw pi-home'},
+        {label: 'Calendar', icon: 'pi pi-fw pi-calendar'},
+        {label: 'Edit', icon: 'pi pi-fw pi-pencil'},
+        {label: 'Documentation', icon: 'pi pi-fw pi-file'},
+        {label: 'Settings', icon: 'pi pi-fw pi-cog'}
+      ];
   }
-  update() {
-    console.log("update");
+  toProfile() {
+    location.assign("/profile");
   }
 
-  delete() {
-    console.log("delele");
+  logout() {
+    this.storageService.sendToLocalStorage("logged", false);
+    this.storageService.sendToSession("logged", false);
+    location.assign("*")
   }
 }

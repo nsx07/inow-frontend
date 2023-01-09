@@ -1,4 +1,4 @@
-import { INOW_API_URL } from './env/enviroment';
+import { StorageService } from './services/storage.service';
 import { ApiService } from './services/api-service.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,14 +9,24 @@ import { Component, OnInit } from '@angular/core';
   providers :[ApiService]
 })
 export class AppComponent implements OnInit {
-  constructor(private apiService : ApiService) {}
+  constructor(
+    private apiService : ApiService,
+    private storageService : StorageService
+    ) {}
 
   ngOnInit(): void {
-    this.apiService.requestFromApi({ action: "getUsers"}).subscribe(//, parameters : {id : "1", name: "Felipe", email : "felipe@pires.com"}
-      (users) => {
-        console.log(users)
-      }
-    )
+
+     const loginInLoad = this.storageService.getFromSession("logged");
+
+     if (location.href.includes("login") || location.href.includes("signup")) return
+
+     if (loginInLoad === null) location.assign("/signup")
+
+
+
+     if (!loginInLoad) location.assign("/login");
+
+
 
   }
 }
