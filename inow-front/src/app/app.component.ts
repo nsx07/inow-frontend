@@ -15,18 +15,12 @@ export class AppComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
-
-     const loginInLoad = this.storageService.getFromSession("logged");
+     const loginInLoad = this.storageService.getFromLocalStorage("logged");
 
      if (location.href.includes("login") || location.href.includes("signup")) return
 
      if (loginInLoad === null) location.assign("/signup")
 
-
-
      if (!loginInLoad) location.assign("/login");
-
-
-
   }
 }

@@ -19,10 +19,12 @@ import {InputTextModule} from 'primeng/inputtext';
 import { DividerModule } from "primeng/divider"
 import {TabMenuModule} from 'primeng/tabmenu';
 import { ButtonModule} from "primeng/button"
+import {ToastModule} from 'primeng/toast';
 import {PanelModule} from 'primeng/panel';
 import { CardModule } from 'primeng/card';
 import { MenuModule} from "primeng/menu";
 import { ProfileComponent } from './pages/profile/profile.component';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -46,12 +48,14 @@ import { ProfileComponent } from './pages/profile/profile.component';
     DividerModule,
     TabMenuModule,
     ButtonModule,
+    ToastModule,
     PanelModule,
     CardModule,
     MenuModule
   ],
   providers: [
-    StorageService
+    StorageService,
+    MessageService
   ],
   bootstrap: [AppComponent]
 })

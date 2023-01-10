@@ -19,7 +19,7 @@ export class ApiService {
   }
 
   log(log : ILog) {
-    return this.http.post(`${INOW_API_URL}security/log`, log).pipe(take(1));
+    return this.http.post<ILog>(`${INOW_API_URL}security/log`, log).pipe(take(1));
   }
 
   requestFromApi(queryEntity : IQueryEntity) {

@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/api';
 import { StorageService } from '../../services/storage.service';
 import { IUser, ILog } from './../../models/User';
 import { ApiService } from './../../services/api-service.service';
@@ -11,13 +12,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit, OnDestroy {
 
-  form! : FormGroup
-
+  form! : FormGroup;
+  invalid! : string
 
   constructor (
     private formB : FormBuilder,
     private apiService : ApiService,
-    private storageService : StorageService
+    private storageService : StorageService,
+    private messageService : MessageService
   ) {}
 
   ngOnDestroy(): void {
@@ -41,16 +43,32 @@ export class LoginComponent implements OnInit, OnDestroy {
     })
   }
 
+  setErroShakeX() {
+    const _element = document.querySelector("#log-panel");
+    _element?.classList.add('animate__shakeX');
+    _element?.addEventListener("animationend", _ => {
+      console.log("end");
+      this.invalid = ""
+    })
+  }
+
   login() {
     const log : ILog = {...this.form.value}
-    console.log(log);
     this.apiService.log(log).subscribe(
-      (result) => {
-        if (result) {
-          console.log(result);
-          this.storageService.sendToSession('logged', true);
-          location.assign("/main")
-        }
+      (result : ILog) => {
+        if (!result.email) {
+          this.messageService.add({severity : "error", summary : "Usuário inexistente!", detail : "Este usuário não está registrado."});
+          this.invalid = "animate_animated animate__shakeX"
+        } else {
+          if (result.password) {
+            this.messageService.add({severity: "success", summary : "Login realizado com sucesso!", detail : "Seja bem vindo novamente."})
+            this.storageService.sendToLocalStorage("logged", true)
+            location.assign("/main");
+          } else {
+            this.messageService.add({severity : "error", summary : "Senha incorreta!", detail : "Senha incorreta, tente novamente."});
+            this.invalid = "animate_animated animate__shakeX"
+          }
+        } setTimeout(() => this.invalid = "", 1000);
       }
     )
   }
