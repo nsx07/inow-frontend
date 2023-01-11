@@ -20,28 +20,18 @@ export class NavComponent implements OnInit{
         {
           label: 'Perfil',
           items: [{
-              label: 'Acessar perfil',
-              icon: 'pi pi-user',
-              command: () => {
-                  this.toProfile();
-              }
+            label: 'Acessar perfil',
+            icon: 'pi pi-user',
+            command: () => this.toProfile()
           },
           {
-              label: 'Sair',
-              icon: 'pi pi-arrow-circle-down',
-              command: () => {
-                  this.logout();
-              }
+            label: 'Sair',
+            icon: 'pi pi-arrow-circle-down',
+            command: () => this.logout()
           }]
         }
       ];
-    this.itemsNav = [
-        {label: 'Home', icon: 'pi pi-fw pi-home'},
-        {label: 'Calendar', icon: 'pi pi-fw pi-calendar'},
-        {label: 'Edit', icon: 'pi pi-fw pi-pencil'},
-        {label: 'Documentation', icon: 'pi pi-fw pi-file'},
-        {label: 'Settings', icon: 'pi pi-fw pi-cog'}
-      ];
+
   }
   toProfile() {
     location.assign("/profile");

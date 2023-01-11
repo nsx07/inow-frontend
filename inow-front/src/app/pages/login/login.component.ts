@@ -46,10 +46,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   setErroShakeX() {
     const _element = document.querySelector("#log-panel");
     _element?.classList.add('animate__shakeX');
-    _element?.addEventListener("animationend", _ => {
-      console.log("end");
-      this.invalid = ""
-    })
+    _element?.addEventListener("animationend", _ => this.invalid = "")
   }
 
   login() {

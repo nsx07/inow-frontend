@@ -1,9 +1,11 @@
-<p-panel header="iNow">
-  <ng-template pTemplate="icons">
-    <button pButton class="p-panel-header-icon p-link" (click)="menu.toggle($event)">
-      <span class="pi pi-user"></span>
-    </button>
-    <p-menu #menu id="config_menu" [model]="itemsHeader" [popup]="true"></p-menu>
-  </ng-template>
-  <p-tabMenu [model]="itemsNav" [activeItem]="itemsNav[0]"></p-tabMenu>
-</p-panel>
+<p-menu #menu id="config_menu" [model]="itemsHeader" [popup]="true"></p-menu>
+  <div class="grid shadow-5 bg-gray-800 pt-2 px-2">
+    <div class="col-6 flex">
+        <img src="../../../assets/logo/inow_name-white.png" class="w-7rem" alt="inow logo">
+    </div>
+    <div class="col-6 flex flex-row-reverse">
+      <button pButton class="p-button-outlined p-button-rounded p-button-text" (click)="menu.toggle($event)">
+        <span class="pi pi-user"></span>
+      </button>
+    </div>
+  </div>

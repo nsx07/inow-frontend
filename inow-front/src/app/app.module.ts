@@ -14,10 +14,12 @@ import { NavComponent } from './shared/nav/nav.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 //  PRIME-NG
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import { AccordionModule } from 'primeng/accordion';
 import {InputTextModule} from 'primeng/inputtext';
 import { DividerModule } from "primeng/divider"
 import {TabMenuModule} from 'primeng/tabmenu';
+
 import { ButtonModule} from "primeng/button"
 import {ToastModule} from 'primeng/toast';
 import {PanelModule} from 'primeng/panel';
@@ -43,6 +45,7 @@ import { MessageService } from 'primeng/api';
     BrowserAnimationsModule,
 
     // PRIME-NG
+    ProgressSpinnerModule,
     AccordionModule,
     InputTextModule,
     DividerModule,
