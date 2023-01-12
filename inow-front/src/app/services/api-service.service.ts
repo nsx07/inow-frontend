@@ -15,14 +15,16 @@ export class ApiService {
   ) {}
 
   sendToApi(queryEntity : IQueryEntity) : Observable<any> {
-    return this.http.post(`${INOW_API_URL}${queryEntity.action}`, queryEntity.parameters).pipe(take(1))
+    return this.http.post(`${INOW_API_URL}${queryEntity.action}`, queryEntity.body, { params : queryEntity.httpParameters}).pipe(take(1))
+  }
+
+  requestFromApi(queryEntity : IQueryEntity, params? : boolean) {
+    if (params)
+      return this.http.post(`${INOW_API_URL}${queryEntity.action}`, queryEntity.queryParameters).pipe(take(1));
+    return this.http.get(`${INOW_API_URL}${queryEntity.action}`).pipe(take(1));
   }
 
   log(log : ILog) {
     return this.http.post<ILog>(`${INOW_API_URL}security/log`, log).pipe(take(1));
-  }
-
-  requestFromApi(queryEntity : IQueryEntity) {
-    return this.http.get(`${INOW_API_URL}${queryEntity.action}`, {params : queryEntity.parameters}).pipe(take(1));
   }
 }

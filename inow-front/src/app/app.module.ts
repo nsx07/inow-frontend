@@ -1,3 +1,4 @@
+import { User } from './models/User';
 import { StorageService } from 'src/app/services/storage.service';
 import { ApiService } from './services/api-service.service';
 //  ANGULAR-CORE
@@ -15,8 +16,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 //  PRIME-NG
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {InputNumberModule} from 'primeng/inputnumber';
 import { AccordionModule } from 'primeng/accordion';
+import {InputMaskModule} from 'primeng/inputmask';
 import {InputTextModule} from 'primeng/inputtext';
+import {SplitterModule} from 'primeng/splitter';
 import { DividerModule } from "primeng/divider"
 import {TabMenuModule} from 'primeng/tabmenu';
 
@@ -46,8 +50,11 @@ import { MessageService } from 'primeng/api';
 
     // PRIME-NG
     ProgressSpinnerModule,
+    InputNumberModule,
+    InputMaskModule,
     AccordionModule,
     InputTextModule,
+    SplitterModule,
     DividerModule,
     TabMenuModule,
     ButtonModule,
@@ -62,4 +69,6 @@ import { MessageService } from 'primeng/api';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+}

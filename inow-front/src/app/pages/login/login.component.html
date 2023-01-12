@@ -1,7 +1,7 @@
 <p-toast position="bottom-right"></p-toast>
 <div class="w-screen h-screen p-block flex justify-content-center align-items-center">
-    <div id="log-panel" class="p-2 animate__animated" [ngClass]="invalid">
-        <p-card [style]="{width: '40vw'}">
+    <div id="log-panel" class="p-2 animate__animated lg:w-5 md:w-10 sm:w-15" [ngClass]="invalid">
+        <p-card>
           <form [formGroup]="form">
               <div class="grid p-fluid ">
                 <div class="col-12 text-center">
@@ -23,7 +23,7 @@
                   <button pButton pRipple type="button" label="Entrar" [disabled]="!form.valid" (click)="login()" class="p-button-outlined p-button-success w-full"></button>
                 </div>
                 <div class="col-12 text-center">
-                  <small>Não possui conta? <a class="no-underline" href="/signup"> Cadastre-se </a></small>
+                  <small>Não possui conta? <a class="no-underline" routerLink="/signup"> Cadastre-se </a></small>
                 </div>
             </div>
           </form>

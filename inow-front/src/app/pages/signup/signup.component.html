@@ -6,53 +6,35 @@
               <div class="col-12 text-center">
                 <span class="text-4xl">Cadastro</span>
               </div>
-              <div class="col-6">
-                  <div class="p-inputgroup">
-                      <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-                      <input type="text" formControlName="name" pInputText placeholder="Nome">
-                  </div>
+              <div class="lg:col-6 md:col-6 sm:col-12">
+                <label for="name">Nome</label>
+                  <input id="name" type="text" formControlName="name" pInputText placeholder="Primeiro nome">
               </div>
-              <div class="col-6">
-                  <div class="p-inputgroup">
-                      <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-                      <input type="text" formControlName="lastname" pInputText placeholder="Sobrenome">
-                  </div>
+              <div class="lg:col-6 md:col-6 sm:col-12">
+                <label for="lastname">Sobrenome</label>
+                  <input type="text" formControlName="lastname" id="lastname" pInputText placeholder="Último sobrenome">
               </div>
-              <div class="col-6">
-                  <div class="p-inputgroup">
-                      <span class="p-inputgroup-addon"><i class="pi pi-info"></i></span>
-                      <input type="text" formControlName="cpf" pInputText placeholder="CPF">
-                  </div>
+              <div class="lg:col-6 md:col-6 sm:col-12">
+                <label for="cpf">CPF</label>
+                <p-inputMask mask="999.999.999-99" id="cpf" formControlName="cpf" placeholder="123.456.789.01"></p-inputMask>
               </div>
-              <div class="col-6">
-                  <div class="p-inputgroup">
-                      <span class="p-inputgroup-addon"><i class="pi pi-phone"></i></span>
-                      <input type="phone" formControlName="phone" pInputText placeholder="Phone">
-                  </div>
+              <div class="lg:col-6 md:col-6 sm:col-12">
+                <label for="phone">Telefone</label>
+                <p-inputMask formControlName="phone" id="phone" mask="(99) 99999-9999" placeholder="(41) 99999-9999"></p-inputMask>
               </div>
               <div class="col-12">
-                  <div class="p-inputgroup">
-                      <span class="p-inputgroup-addon">@</span>
-                      <input type="email" formControlName="email" pInputText placeholder="Email">
-                  </div>
+                <label for="email">Email</label>
+                <input id="email" type="email" formControlName="email" pInputText placeholder="Ex: developer@inow.io">
               </div>
               <div class="col-12">
-                  <div class="p-inputgroup">
-                      <span class="p-inputgroup-addon"><i class="pi pi-key"></i></span>
-                      <input type="password" formControlName="password" pInputText autocomplete="username" placeholder="Senha">
-                  </div>
+                <label for="password">Senha</label>
+                <input type="password" id="password" formControlName="password" pInputText autocomplete="username" placeholder="Nex: 123456">
               </div>
-              <!-- <div class="col-6">
-                  <div class="p-inputgroup">
-                      <span class="p-inputgroup-addon"><i class="pi pi-key"></i></span>
-                      <input type="password" formControlName="re_password" pInputText autocomplete="username" placeholder="Confirme a senha">
-                  </div>
-              </div> -->
               <div class="col-12">
                 <button pButton pRipple type="button" label="Entrar" (click)="signUp()" [disabled]="!form.valid" class="p-button-outlined p-button-success w-full"></button>
               </div>
               <div class="col-12 text-center">
-                <small>Possui conta? <a class="no-underline" href="/login"> Faça o login </a></small>
+                <small>Possui conta? <a class="no-underline" routerLink="/login"> Faça o login </a></small>
               </div>
           </div>
         </form>

@@ -1,11 +1,14 @@
 <p-menu #menu id="config_menu" [model]="itemsHeader" [popup]="true"></p-menu>
-  <div class="grid shadow-5 bg-gray-800 pt-2 px-2">
-    <div class="col-6 flex">
-        <img src="../../../assets/logo/inow_name-white.png" class="w-7rem" alt="inow logo">
+<div class="shadow-5 bg-gray-800">
+  <div class="flex flex-auto justify-content-between p-2">
+    <div class="flex">
+        <a routerLink="/main"><img src="../../../assets/logo/inow_name-white.png" class="w-7rem" alt="inow logo"></a>
     </div>
-    <div class="col-6 flex flex-row-reverse">
+    <div class="flex flex-row-reverse">
       <button pButton class="p-button-outlined p-button-rounded p-button-text" (click)="menu.toggle($event)">
         <span class="pi pi-user"></span>
       </button>
     </div>
   </div>
+
+</div>

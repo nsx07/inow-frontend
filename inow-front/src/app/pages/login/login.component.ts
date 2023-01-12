@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { StorageService } from '../../services/storage.service';
 import { IUser, ILog } from './../../models/User';
@@ -13,13 +14,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit, OnDestroy {
 
   form! : FormGroup;
-  invalid! : string
+  invalid! : string;
 
   constructor (
     private formB : FormBuilder,
     private apiService : ApiService,
     private storageService : StorageService,
-    private messageService : MessageService
+    private messageService : MessageService,
+    private router : Router
   ) {}
 
   ngOnDestroy(): void {
@@ -59,8 +61,9 @@ export class LoginComponent implements OnInit, OnDestroy {
         } else {
           if (result.password) {
             this.messageService.add({severity: "success", summary : "Login realizado com sucesso!", detail : "Seja bem vindo novamente."})
-            this.storageService.sendToLocalStorage("logged", true)
-            location.assign("/main");
+            this.storageService.sendToLocalStorage("logged", true).sendToLocalStorage("email", result.email)
+
+            this.router.navigate(["main"]);
           } else {
             this.messageService.add({severity : "error", summary : "Senha incorreta!", detail : "Senha incorreta, tente novamente."});
             this.invalid = "animate_animated animate__shakeX"

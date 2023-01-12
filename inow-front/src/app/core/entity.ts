@@ -1,19 +1,33 @@
+import { HttpParams } from '@angular/common/http';
 import { IUser } from './../models/User';
-export declare type Parameters = {[key : string] : string}
+export interface Parameters {
+  colum : string,
+  value : string
+}
+
+export interface QueryParameters {
+  table : string,
+  query : Array<Parameters>,
+  fields? : Array<string>
+}
 
 export interface IQueryEntity {
   action : string,
-  parameters? : Parameters
+  httpParameters? : HttpParams,
+  queryParameters? : QueryParameters,
+  body? : any
 }
 
 
 export class queryEntity implements IQueryEntity {
+  parameters! : Parameters;
   action! : string;
-  parameters! : Parameters
+  body : any;
 
-  constructor(action : string, parameters : Parameters) {
+  constructor(action : string, parameters? : Parameters, body? : any) {
     this.action = action;
-    this.parameters = parameters;
+    if (parameters) this.parameters = parameters
+    if (body) this.body = body
   }
 }
 export class queryUser extends queryEntity {

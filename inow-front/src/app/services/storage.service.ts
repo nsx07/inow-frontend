@@ -9,6 +9,7 @@ export class StorageService {
 
   sendToSession(key : string, value : any) {
     sessionStorage.setItem(key, JSON.stringify(value));
+    return this;
   }
 
   getFromSession(key : string) {
@@ -18,6 +19,7 @@ export class StorageService {
 
   sendToLocalStorage(key : string, value : any) {
     localStorage.setItem(key, JSON.stringify(value));
+    return this;
   }
 
   getFromLocalStorage(key : string) {
