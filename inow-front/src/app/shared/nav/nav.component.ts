@@ -39,7 +39,8 @@ export class NavComponent implements OnInit{
 
   logout() {
     this.storageService.sendToLocalStorage("logged", false);
-    this.storageService.sendToSession("logged", false);
+    this.storageService.sendToLocalStorage("id", null)
+    // this.storageService.sendToSession("logged", false);
     location.assign("*")
   }
 }

@@ -54,14 +54,20 @@ export class LoginComponent implements OnInit, OnDestroy {
   login() {
     const log : ILog = {...this.form.value}
     this.apiService.log(log).subscribe(
-      (result : ILog) => {
+      (result : any) => {
+
+        if (result?.status && result.status > 220) {
+          this.messageService.add({severity: "error", summary : "Erro interno!", detail : "Houve um erro interno"})
+          return;
+        } result = result.log;
+
         if (!result.email) {
           this.messageService.add({severity : "error", summary : "Usuário inexistente!", detail : "Este usuário não está registrado."});
           this.invalid = "animate_animated animate__shakeX"
         } else {
           if (result.password) {
             this.messageService.add({severity: "success", summary : "Login realizado com sucesso!", detail : "Seja bem vindo novamente."})
-            this.storageService.sendToLocalStorage("logged", true).sendToLocalStorage("email", result.email)
+            this.storageService.sendToLocalStorage("logged", true).sendToLocalStorage("id", result.id)
 
             this.router.navigate(["main"]);
           } else {
@@ -69,7 +75,9 @@ export class LoginComponent implements OnInit, OnDestroy {
             this.invalid = "animate_animated animate__shakeX"
           }
         } setTimeout(() => this.invalid = "", 1000);
-      }
+      },
+      (err) => this.messageService.add({severity: "error", summary : "Erro interno!", detail : "Houve um erro interno"})
+
     )
   }
 }

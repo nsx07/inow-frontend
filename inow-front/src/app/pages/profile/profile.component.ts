@@ -1,3 +1,5 @@
+import { IUser } from './../../models/User';
+import { QueryService } from './../../services/query.service';
 import { ApiService } from './../../services/api-service.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { Component, OnInit } from '@angular/core';
@@ -9,22 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  profile = {name : ""}
+  profile! : IUser
 
   constructor(
     private storage : StorageService,
-    private apiService : ApiService
+    private queryService : QueryService
   ) {}
 
-  ngOnInit(): void {
-
-    this.apiService.requestFromApi({action : "internal/getInfo", queryParameters : {table : "user", fields : ["name", "lastname"] , query : [{colum : "email",value : this.storage.getFromLocalStorage("email")}]}}, true)
-      .subscribe(
-        (result : any) => {
-          console.log(result)
-          this.profile.name = `${result[0].name} ${result[0].lastname}`
-        }
-      )
-
+  async ngOnInit() {
+    await this.queryService.getUserInfo(this.storage.getFromLocalStorage("id"))
+              .then(profile => this.profile = profile)
+    console.log(this.profile)
   }
 }

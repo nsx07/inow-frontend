@@ -1,7 +1,25 @@
 <app-nav></app-nav>
 
-<div class="w-full">
-  <div class="d-panel p-2">
-    CONTENT
+  <div class="p-2 bg-grey-800 border-round-md w-full h-30rem">
+    <p-card>
+      <div class="grid">
+        <div class="col-12">
+          <div class="grid">
+            <div class="col">
+              <div class="p-inputgroup">
+                <span class="p-inputgroup-addon">WWW</span>
+                <input type="text" pInputText [(ngModel)]="url" placeholder="Digite a url que deseja buscar os dados">
+            </div>
+            </div>
+            <div class="col-fixed"><p-dropdown [options]="methods" [(ngModel)]="selectedMethod" optionLabel="name" optionValue="method"></p-dropdown></div>
+            <div class="col-fixed"><p-button [disabled]="!url" label="Buscar" (onClick)="searchData()" ></p-button></div>
+          </div>
+        </div>
+        <div class="col-12">
+          <p-scrollPanel>
+            <textarea rows="10" cols="120" wrap="hard" pInputTextarea [(ngModel)]="data"></textarea>
+          </p-scrollPanel>
+        </div>
+      </div>
+    </p-card>
   </div>
-</div>

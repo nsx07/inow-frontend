@@ -1,6 +1,7 @@
 export interface ILog {
   email : string,
-  password : string
+  password : string,
+  status? : string | number
 }
 export interface IUser {
   id : number,
