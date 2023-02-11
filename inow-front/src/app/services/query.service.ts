@@ -14,9 +14,13 @@ export class QueryService {
 
   getUserInfo(id : number) {
     return new Promise<IUser>((resolve, reject) => {
-      this.apiService.requestFromApi({action : "getUserById"+id}).subscribe(
+      this.apiService.requestFromApi<IUser>({action : "getUserById"+id}).subscribe(
         result => {
-          if (result) resolve(result[0])
+          if (result) {
+            resolve(result)
+          } else {
+            reject(false)
+          }
         }
       )
     })

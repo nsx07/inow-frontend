@@ -18,7 +18,7 @@ export class ApiService {
     return this.http.post<any>(`${INOW_API_URL}${queryEntity.action}`, queryEntity.body).pipe(take(1))
   }
 
-  requestFromApi(queryEntity : IQueryEntity, params? : boolean) {
+  requestFromApi<T>(queryEntity : IQueryEntity, params? : boolean) : Observable<T> {
     if (params)
       return this.http.post<any>(`${INOW_API_URL}${queryEntity.action}`, queryEntity.queryParameters, { params : queryEntity.httpParameters}).pipe(take(1));
     return this.http.get<any>(`${INOW_API_URL}${queryEntity.action}`).pipe(take(1));
