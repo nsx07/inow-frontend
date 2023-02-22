@@ -24,7 +24,7 @@ export class ApiService {
     return this.http.get<any>(`${INOW_API_URL}${queryEntity.action}`).pipe(take(1));
   }
 
-  log(log : ILog) {
+  log(log : ILog) : Observable<any> {
     return this.http.post(`${INOW_API_URL}security/log`, log).pipe(take(1));
   }
 }

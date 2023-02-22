@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { StorageService } from '../../services/storage.service';
-import { IUser, ILog } from './../../models/User';
+import { IUser, ILog, LogOptions } from './../../models/User';
 import { ApiService } from './../../services/api-service.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   form! : FormGroup;
   invalid! : string;
+  inputTypes! : any[]
 
   constructor (
     private formB : FormBuilder,
@@ -34,13 +35,24 @@ export class LoginComponent implements OnInit, OnDestroy {
     return this.storageService.getFromSession("logged");
   }
 
+  getInputName() {
+    return this.inputTypes.find(type => type.type === this.form.get("inputType")?.value)?.name
+  }
+
   ngOnInit(): void {
+    this.inputTypes = [
+      {name  : "Email", code : "email", type : LogOptions.EMAIL},
+      {name  : "CPF", code : "cpf", type : LogOptions.CPF},
+      {name  : "Celular", code : "phone", type : LogOptions.PHONE}
+    ]
+
     this.setForm();
   }
 
   setForm() {
     this.form = this.formB.group({
-      email : ["", Validators.compose([Validators.required, Validators.email])],
+      inputType : ["", Validators.required],
+      input : ["", Validators.compose([Validators.required])],
       password : ["", Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(16), Validators.pattern(/^([a-zA-Z0-9_@*#$]*)$/)])]
     })
   }
@@ -53,6 +65,11 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   login() {
     const log : ILog = {...this.form.value}
+
+    if (log.inputType === null) {
+      throw new Error('informe o tipo de login')
+    }
+
     this.apiService.log(log).subscribe(
       (result : any) => {
 
@@ -61,7 +78,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           return;
         } result = result.log;
 
-        if (!result.email) {
+        if (!result.input) {
           this.messageService.add({severity : "error", summary : "Usuário inexistente!", detail : "Este usuário não está registrado."});
           this.invalid = "animate_animated animate__shakeX"
         } else {
@@ -80,4 +97,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     )
   }
+
+
+
 }

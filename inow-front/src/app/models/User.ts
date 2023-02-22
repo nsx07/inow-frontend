@@ -1,5 +1,12 @@
+export enum LogOptions {
+  "CPF" = 1,
+  "EMAIL" = 2,
+  "PHONE" = 3
+}
+
 export interface ILog {
-  email : string,
+  input : string,
+  inputType : LogOptions
   password : string,
   status? : string | number
 }

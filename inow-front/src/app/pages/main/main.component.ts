@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class MainComponent {
   body! : string
   data!: any;
-  url : string = "http://localhost:8080/api/v1";
+  url : string = "http://52.67.212.25:8080/api/v1/";
   methods = [
     {id : 0, name : "GET", method : "GET"},
     {id : 1, name : "DELETE", method : "DELETE"},

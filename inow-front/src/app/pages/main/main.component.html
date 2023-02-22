@@ -11,7 +11,9 @@
                 <input type="text" pInputText [(ngModel)]="url" placeholder="Digite a url que deseja buscar os dados">
             </div>
             </div>
-            <div class="col-fixed"><p-dropdown [options]="methods" [(ngModel)]="selectedMethod" optionLabel="name" optionValue="method"></p-dropdown></div>
+            <div class="col-fixed">
+              <p-dropdown [options]="methods" [(ngModel)]="selectedMethod" optionLabel="name" optionValue="method"></p-dropdown>
+            </div>
             <div class="col-fixed"><p-button [disabled]="!url" label="Buscar" (onClick)="searchData()" ></p-button></div>
           </div>
         </div>
